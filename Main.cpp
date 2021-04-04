@@ -1,5 +1,5 @@
 // cpp prog to convert time to hrs or time into world time
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
 int minstohours(int x);
@@ -55,7 +55,7 @@ int minstohours(int x) {
 }
 
 int loctoglobe(string zone, int y, int z) {
-    int isthrs, istmins, gmthrs, gmtmins, edthrs, edtmins, csthrs, cstmins;
+
     //timezones used are gmt, ist, edt, cst
     if (zone == "gmt" || zone == "GMT") {
         gmtconvert(y, z);
@@ -69,55 +69,55 @@ int loctoglobe(string zone, int y, int z) {
     else if (zone == "cst" || zone == "CST") {
         cstconvert(y, z);
     }
-    else{
-        cout<<"invalid input"<<endl;
+    else {
+        cout << "invalid input" << endl;
     }
     return 0;
 }
 
-int gmtconvert(int y, int z){
-    int isthrs, istmins, gmthrs, gmtmins, edthrs, edtmins, csthrs, cstmins;
-        isthrs = y + 5;
-        istmins = z + 30;
-        if (istmins > 60) {
-            isthrs++;
-            istmins = istmins - 60;
-        }
-        if (isthrs >= 24) {
-            isthrs = isthrs - 24;
-        }
-        cout << "Time(ist): " << isthrs << ":" << istmins << endl;
+int gmtconvert(int y, int z) {
+    int isthrs, istmins, edthrs, edtmins, csthrs, cstmins;
+    isthrs = y + 5;
+    istmins = z + 30;
+    if (istmins > 60) {
+        isthrs++;
+        istmins = istmins - 60;
+    }
+    if (isthrs >= 24) {
+        isthrs = isthrs - 24;
+    }
+    cout << "Time(ist): " << isthrs << ":" << istmins << endl;
 
-        //gmt to edt
+    //gmt to edt
 
-        edthrs = y - 8;
-        edtmins = z;
-        if (edtmins > 60) {
-            edthrs++;
-            edtmins = edtmins - 60;
-        }
-        if (edthrs <= 0) {
-            edthrs = edthrs + 24;
-        }
-        cout << "Time(edt): " << edthrs << ":" << edtmins << endl;
+    edthrs = y - 8;
+    edtmins = z;
+    if (edtmins > 60) {
+        edthrs++;
+        edtmins = edtmins - 60;
+    }
+    if (edthrs <= 0) {
+        edthrs = edthrs + 24;
+    }
+    cout << "Time(edt): " << edthrs << ":" << edtmins << endl;
 
-        //gmt to cst
+    //gmt to cst
 
-        csthrs = y - 5;
-        cstmins = z;
-        if (cstmins > 60) {
-            csthrs++;
-            cstmins = cstmins - 60;
-        }
-        if (csthrs <= 0) {
-            csthrs = csthrs + 24;
-        }
-        cout << "Time(cst): " << csthrs << ":" << cstmins << endl;
-
+    csthrs = y - 5;
+    cstmins = z;
+    if (cstmins > 60) {
+        csthrs++;
+        cstmins = cstmins - 60;
+    }
+    if (csthrs <= 0) {
+        csthrs = csthrs + 24;
+    }
+    cout << "Time(cst): " << csthrs << ":" << cstmins << endl;
+    return 0;
 }
 
-int istconvert(int y, int z){
-    int isthrs, istmins, gmthrs, gmtmins, edthrs, edtmins, csthrs, cstmins;
+int istconvert(int y, int z) {
+    int gmthrs, gmtmins, edthrs, edtmins, csthrs, cstmins;
 
     //ist to gmt
 
@@ -157,14 +157,14 @@ int istconvert(int y, int z){
         csthrs = csthrs + 24;
     }
     cout << "Time(cst): " << csthrs << ":" << cstmins << endl;
-    
+    return 0;
 }
 
-int edtconvert(int y, int z){
-    int isthrs, istmins, gmthrs, gmtmins, edthrs, edtmins, csthrs, cstmins;
-    
+int edtconvert(int y, int z) {
+    int isthrs, istmins, gmthrs, gmtmins, csthrs, cstmins;
+
     //edt to gmt
-    
+
     gmthrs = y + 4;
     gmtmins = z;
     if (gmthrs >= 24) {
@@ -184,22 +184,23 @@ int edtconvert(int y, int z){
         isthrs = isthrs - 24;
     }
     cout << "Time(ist): " << isthrs << ":" << istmins << endl;
-    
+
     //edt to cst
-    
+
     csthrs = y - 1;
     cstmins = z;
     if (csthrs < 0) {
         csthrs = csthrs + 24;
     }
     cout << "Time(cst): " << csthrs << ":" << cstmins << endl;
+    return 0;
 }
 
-int cstconvert(int y, int z){
-    int isthrs, istmins, gmthrs, gmtmins, edthrs, edtmins, csthrs, cstmins;
-    
+int cstconvert(int y, int z) {
+    int isthrs, istmins, gmthrs, gmtmins, edthrs, edtmins;
+
     //cst to gmt
-    
+
     gmthrs = y + 5;
     gmtmins = z;
     if (gmthrs >= 24) {
@@ -228,5 +229,5 @@ int cstconvert(int y, int z){
         edthrs = edthrs - 24;
     }
     cout << "Time(edt): " << edthrs << ":" << edtmins << endl;
-
+    return 0;
 }
